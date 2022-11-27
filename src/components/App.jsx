@@ -10,7 +10,7 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const _handleFeedback = e => {
+  const handleFeedback = e => {
     if (e === 'Good') {
       setGood(good + 1);
     } else if (e === 'Neutral') {
@@ -25,7 +25,7 @@ export const App = () => {
     return total;
   };
 
-  const _positivePercentage = () => {
+  const positivePercentage = () => {
     if (totalFeedback() === 0) {
       return 0;
     }
@@ -47,7 +47,7 @@ export const App = () => {
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={['Good', 'Neutral', 'Bad']}
-            onLeaveFeedback={this.handleFeedback}
+            onLeaveFeedback={handleFeedback}
           />{' '}
         </Section>
 
@@ -58,7 +58,7 @@ export const App = () => {
               neutral={this.state.neutral}
               bad={this.state.bad}
               total={this.totalFeedback()}
-              positivePercentage={this.positivePercentage()}
+              positivePercentage={positivePercentage()}
             />
           ) : (
             <Notification message="There is no feedback"></Notification>
