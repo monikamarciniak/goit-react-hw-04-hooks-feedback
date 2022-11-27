@@ -1,40 +1,38 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useState } from 'react'
 import { Statistics } from './Statistics/Statistics';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Section } from './Section/Section';
 import { Notification } from './Notification/Notification';
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  handleFeedback = e => {
+  const handleFeedback = e => {
     if (e === 'Good') {
-      this.setState({ good: this.state.good + 1 });
+      setGood(good + 1);
     } else if (e === 'Neutral') {
-      this.setState({ neutral: this.state.neutral + 1 });
+      setNeutral(neutral + 1);
     } else if (e === 'Bad') {
-      this.setState({ bad: this.state.bad + 1 });
+      setBad(bad + 1);
     }
   };
 
-  totalFeedback = () => {
-    let total = this.state.good + this.state.neutral + this.state.bad;
+  const totalFeedback = e => {
+    let total = good + neutral + bad;
     return total;
   };
 
-  positivePercentage = () => {
-    if (this.totalFeedback() === 0) {
+  const positivePercentage = () => {
+    if (totalFeedback() === 0) {
       return 0;
     }
-    return Math.round((this.state.good / this.totalFeedback()) * 100);
+    return Math.round((good / totalFeedback()) * 100);
   };
 
-  render() {
-    return (
+  return (
       <div
         style={{
           height: '100vh',
@@ -68,5 +66,4 @@ export class App extends Component {
         </Section>
       </div>
     );
-  }
 }
