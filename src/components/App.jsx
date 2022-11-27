@@ -10,7 +10,7 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const handleFeedback = e => {
+  const _handleFeedback = e => {
     if (e === 'Good') {
       setGood(good + 1);
     } else if (e === 'Neutral') {
@@ -25,7 +25,7 @@ export const App = () => {
     return total;
   };
 
-  const positivePercentage = () => {
+  const _positivePercentage = () => {
     if (totalFeedback() === 0) {
       return 0;
     }
